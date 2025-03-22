@@ -15,13 +15,15 @@ public class Song {
     private String title;
     private String artist;
     private String genre;
+    private String slink;
 
     public Song(){}
 
-    public Song(String _title,String _artist,String _genre) {
+    public Song(String _title,String _artist,String _genre, String _slink) {
         this.title = _title;
         this.artist = _artist;
         this.genre = _genre;
+        this.slink = _slink;
     }
 
     public long getSid(){
@@ -52,4 +54,11 @@ public class Song {
         this.genre = genre;
     }
 
+    public String getSlink() {
+        return slink;
+    }
+
+    public void setSlink(String slink) {
+        this.slink = slink;
+    }
 }

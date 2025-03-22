@@ -7,7 +7,6 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Playlist {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long pid;
@@ -24,5 +23,32 @@ public class Playlist {
         this.songid = _songid;
     }
 
+    public long getSongid() {
+        return songid;
+    }
+
+    public void setSongid(long songid) {
+        this.songid = songid;
+    }
+
+    public long getUserid() {
+        return userid;
+    }
+
+    public void setUserid(long userid) {
+        this.userid = userid;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public long getPid() {
+        return this.pid;
+    }
 
 }

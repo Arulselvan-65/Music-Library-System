@@ -13,8 +13,8 @@ public class LikeController {
     private LikesService likeService;
 
     @PostMapping("/like")
-    public long toggleLike(@RequestParam("user_id") long userId, @RequestParam("song_id") long songId) {
-        long likeCount = likeService.toggleLike(userId, songId);
+    public long toggleLike(@RequestParam long user_id, @RequestParam long song_id) {
+        long likeCount = likeService.toggleLike(user_id, song_id);
         return likeCount;
     }
 }

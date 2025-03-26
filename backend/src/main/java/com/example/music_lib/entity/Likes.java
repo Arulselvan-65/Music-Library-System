@@ -8,23 +8,40 @@ public class Likes {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "lid", nullable = false)
-    private Long lid;
+    @Column(name = "lid")
+    private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "song_id", nullable = false)
+    @JoinColumn(name = "song_id")
     private Song song;
 
-    public Long getLid() { return lid; }
-    public void setLid(Long lid) { this.lid = lid; }
+    public Likes() {}
 
-    public User getUser() { return user; }
-    public void setUser(User user) { this.user = user; }
+    public Long getId() {
+        return id;
+    }
 
-    public Song getSong() { return song; }
-    public void setSong(Song song) { this.song = song; }
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Song getSong() {
+        return song;
+    }
+
+    public void setSong(Song song) {
+        this.song = song;
+    }
 }

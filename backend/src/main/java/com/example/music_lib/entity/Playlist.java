@@ -1,42 +1,41 @@
 package com.example.music_lib.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@Table(name = "playlist")
 public class Playlist {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long pid;
+    private Long pid;
 
+    @Column(name = "name", nullable = false)
     private String name;
-    private long userid;
-    private long songid;
 
-    public Playlist(){}
+    @Column(name="userId")
+    private Long userId;
 
-    public Playlist(String _name,long _userid,long _songid) {
-        this.name = _name;
-        this.userid = _userid;
-        this.songid = _songid;
+    @Column(name="songId")
+    private Long songId;
+
+    public Playlist() {}
+
+    public Playlist(String name, long userId, long songId) {
+        this.name = name;
+        this.userId = userId;
+        this.songId = songId;
     }
 
-    public long getSongid() {
-        return songid;
+    public int getPid() {
+        return Math.toIntExact(pid);
     }
 
-    public void setSongid(long songid) {
-        this.songid = songid;
-    }
-
-    public long getUserid() {
-        return userid;
-    }
-
-    public void setUserid(long userid) {
-        this.userid = userid;
+    public void setPid(Long pid) {
+        this.pid = pid;
     }
 
     public String getName() {
@@ -47,8 +46,19 @@ public class Playlist {
         this.name = name;
     }
 
-    public long getPid() {
-        return this.pid;
+    public long getUserId() {
+        return userId;
     }
 
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
+
+    public Long getSongId() {
+        return songId;
+    }
+
+    public void setSongId(Long songId) {
+        this.songId = songId;
+    }
 }

@@ -3,42 +3,52 @@ package com.example.music_lib.controller;
 import com.example.music_lib.entity.Playlist;
 import com.example.music_lib.service.PlaylistService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
-
 
 @RestController
 @RequestMapping("/api/playlists")
 public class PlaylistController {
 
     @Autowired
-    private PlaylistService playService;
+    private PlaylistService playlistService;
 
     @GetMapping("/")
     public List<Playlist> getAllPlaylists(){
-        return playService.getAllPlaylists();
+        return playlistService.getAllPlaylists();
     }
 
-    @GetMapping("/playlist/{id}")
-    public Optional<Playlist> getPlaylist(@PathVariable("id") long id){
-        return playService.getPlaylist(id);
+    @PostMapping("/create")
+    public ResponseEntity<Playlist> createPlaylist(@RequestBody Playlist playlist) {
+        Playlist created = playlistService.createPlaylist(playlist);
+        return ResponseEntity.ok(created);
     }
 
-    @PostMapping("/addplaylist")
-    public String createPlaylist(@RequestBody Playlist playlist){
-        return playService.createPlaylist(playlist);
+    @DeleteMapping("/playlist")
+    public String deletePlaylist(
+            @RequestParam long userId,
+            @RequestParam String name) {
+        playlistService.deletePlaylist(name, userId);
+        return "Playlist with name " + name + " and userid " + userId + " is deleted successfully";
     }
 
-    @PutMapping("/{id}")
-    public String updatePlaylist(@PathVariable("id") long id,@RequestBody Playlist playlist){
-        return playService.updatePlaylist(id, playlist);
+    @PutMapping("/update")
+    public ResponseEntity<Playlist> updatePlaylist(
+            @RequestParam long userId,
+            @RequestParam long pid,
+            @RequestParam String newName) {
+        Playlist updated = playlistService.updatePlaylist(pid, userId, newName);
+        if (updated != null) {
+            return ResponseEntity.ok(updated);
+        }
+        return ResponseEntity.notFound().build();
     }
 
-    @DeleteMapping("/playlist/{id}")
-    public String deletePlaylist(@PathVariable("id") long id){
-        return playService.deletePlaylist(id);
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<Playlist>> getUserPlaylists(@PathVariable Integer userId) {
+        List<Playlist> playlists = playlistService.getUserPlaylists(userId);
+        return ResponseEntity.ok(playlists);
     }
-
 }

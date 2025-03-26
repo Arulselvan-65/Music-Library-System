@@ -3,15 +3,20 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background-color: #232323;
+    background-color: transparent;
     color: white;
 }
 
 .navbar-left .logo {
-    font-size: 24px;
+    font-size: 26px;
+    margin-left: 45%;
     font-weight: bold;
     text-decoration: none;
-    color: white;
+    background: linear-gradient(90deg, #FF2E63, #FF9A8B);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: -0.03em;
 }
 
 .navbar-right {
@@ -35,11 +40,13 @@
 }
 
 .login-button {
-    background-color: #FF2E63;
+    background: linear-gradient(135deg, #FF2E63, #fc4a7b);
 }
 
 .login-button:hover {
-    background-color: #fc1e56;
+    background: linear-gradient(135deg, #fc1e56, #ff3f72);
+    transform: translateY(-1px);
+    box-shadow: 0 12px 20px rgba(255, 46, 99, 0.4);
 }
 
 

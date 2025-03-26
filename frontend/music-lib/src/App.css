@@ -6,7 +6,8 @@
 }
 
 body {
-  background-color: #181818;
+    background: linear-gradient(to top, #222742, #131313);
+    min-height: 100vh;
 }
 
 .auth-page{

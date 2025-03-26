@@ -11,6 +11,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/users")
+@CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
 
 
@@ -41,6 +42,11 @@ public class UserController {
     @DeleteMapping("/deleteuser/{id}")
     public String deleteUser(@PathVariable("id") long id){
         return userService.deleteUser(id);
+    }
+
+    @PostMapping("/user")
+    public Boolean isValidUser(@RequestBody User user){
+        return userService.isValidUser(user);
     }
 
 }

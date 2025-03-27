@@ -2,10 +2,15 @@ package com.example.music_lib.controller;
 
 import com.example.music_lib.entity.User;
 import com.example.music_lib.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 
@@ -44,9 +49,23 @@ public class UserController {
         return userService.deleteUser(id);
     }
 
-    @PostMapping("/user")
-    public Boolean isValidUser(@RequestBody User user){
-        return userService.isValidUser(user);
+    @PostMapping("/session/login")
+    public ResponseEntity<Object> isValidUser(@RequestBody User user, HttpServletRequest request){
+
+        User eu = userService.findByEmail(user.getEmail());
+
+        if(eu.getPassword().equals(user.getPassword())){
+
+            var session = request.getSession();
+            session.setAttribute("username", user.getName());
+            Map<String, String> data = new HashMap<>();
+            data.put("msg" , "Login Successful");
+            data.put("userid", String.valueOf(eu.getId()));
+
+            return ResponseEntity.status(HttpStatus.OK).body(data);
+        }
+
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid Credentials");
     }
 
 }

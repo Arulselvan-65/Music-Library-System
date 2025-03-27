@@ -2,13 +2,11 @@ package com.example.music_lib.service;
 
 import com.example.music_lib.entity.User;
 import com.example.music_lib.repository.UserRepository;
-import org.hibernate.type.TrueFalseConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -61,16 +59,8 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public boolean isValidUser(User user){
-        User es = userRepository.getUserByEmail(user.getEmail());
-
-        if(Objects.equals(es.getPassword(), user.getPassword())){
-            return true;
-        }
-        else{
-            return false;
-        }
-
+    public User findByEmail(String email){
+        return userRepository.getUserByEmail(email);
     }
 
 }

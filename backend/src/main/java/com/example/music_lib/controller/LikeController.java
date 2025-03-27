@@ -17,4 +17,9 @@ public class LikeController {
         long likeCount = likeService.toggleLike(user_id, song_id);
         return likeCount;
     }
+
+    @GetMapping("/song/likes/{id}")
+    public int getLikesCount(@PathVariable("id") long id){
+        return likeService.getLikeCount(id);
+    }
 }

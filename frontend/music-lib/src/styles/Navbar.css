@@ -5,10 +5,11 @@
     padding: 10px 20px;
     background-color: transparent;
     color: white;
+    height: 80px;
 }
 
 .navbar-left .logo {
-    font-size: 26px;
+    font-size: 28px;
     margin-left: 45%;
     font-weight: bold;
     text-decoration: none;
@@ -23,10 +24,11 @@
     font-size: 16px;
     display: flex;
     gap: 15px;
+    margin-right: 4%;
 }
 
 .nav-button {
-    font-size: 18px;
+    font-size: 17px;
     color: white;
     text-decoration: none;
     display: flex;
@@ -34,16 +36,25 @@
     justify-content: center;
     align-items: center;
     padding: 8px 8px;
-    border-radius: 4px;
+    border-radius: 12px;
     border: none;
     cursor: pointer;
-}
-
-.login-button {
     background: linear-gradient(135deg, #FF2E63, #fc4a7b);
 }
 
-.login-button:hover {
+.add-song{
+    width: 120px;
+    background: transparent;
+    border: 1px solid #FF2E63; 
+    color: #FF2E63;
+}
+.add-song:hover {
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: none;
+}
+
+.nav-button:hover {
     background: linear-gradient(135deg, #fc1e56, #ff3f72);
     transform: translateY(-1px);
     box-shadow: 0 12px 20px rgba(255, 46, 99, 0.4);

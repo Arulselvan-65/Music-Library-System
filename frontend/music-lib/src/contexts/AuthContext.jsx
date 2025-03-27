@@ -12,12 +12,14 @@ export const AuthProvider = ({children}) =>{
     const login = () => {
         setIsLoggedIn(true);
         localStorage.setItem("isLoggedIn", true);
-        toast.success("Logged in Successfully!", {theme: "dark"})
+        toast.success("Logged in Successfully!", {theme: "dark", autoClose: 1000, pauseOnHover: false})
     }
 
     const logout = () => {
         setIsLoggedIn(false);
+        toast.error("Logged out Successfully!", {theme: "dark", autoClose: 1000, pauseOnHover: false})
         localStorage.removeItem("isLoggedIn");
+        localStorage.removeItem("userId");
     }
 
     return (

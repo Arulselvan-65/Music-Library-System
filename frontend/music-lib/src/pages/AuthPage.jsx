@@ -7,10 +7,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 const AuthPage = ({ onClose }) => {
-
-  console.log("AuthPage is rendering");
-
-
   const initialFormData = { name: '', email: '', password: '' };
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState(initialFormData);
@@ -30,15 +26,15 @@ const AuthPage = ({ onClose }) => {
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
 
-    let res = axios.post("http://localhost:8080/api/users/user", {
+    let res = axios.post("http://localhost:8080/api/users/session/login", {
       name: formData.name,
       password: formData.password,
       email: formData.email
     });
 
-    if ((await res).data === true) {
+    if ((await res).data.msg === "Login Successful") {
       login();
-      localStorage.setItem("isLoggedIn", true);
+      localStorage.setItem("userId", (await res).data.userid);
       onClose();
     }
 
